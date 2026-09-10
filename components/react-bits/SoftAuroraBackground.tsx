@@ -21,12 +21,10 @@ function useMediaQuery(query: string, serverFallback = false) {
 
 /**
  * Primary site atmosphere — fixed full-viewport SoftAurora behind content.
- * Mouse interaction only on fine desktop pointers; disabled for touch / reduced-motion.
+ * Ambient only: no mouse interaction (GlowCursor handles follow).
  */
 export function SoftAuroraBackground() {
   const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const finePointer = useMediaQuery("(hover: hover) and (pointer: fine)");
-  const enableMouse = !reduceMotion && finePointer;
 
   return (
     <div className="soft-aurora-bg" aria-hidden="true">
@@ -34,10 +32,9 @@ export function SoftAuroraBackground() {
         color1="#3EC6D8"
         color2="#9B8CFF"
         lightMode={false}
-        brightness={0.85}
-        speed={reduceMotion ? 0.12 : 0.5}
-        mouseInfluence={0.3}
-        enableMouseInteraction={enableMouse}
+        brightness={0.75}
+        speed={reduceMotion ? 0.1 : 0.35}
+        enableMouseInteraction={false}
         scale={1.45}
         bandHeight={0.48}
         bandSpread={1.05}

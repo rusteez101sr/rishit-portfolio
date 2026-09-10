@@ -83,6 +83,22 @@ img {
   display: block;
 }
 
+/* ——— GlowCursor follow layer (between SoftAurora and content) ——— */
+.glow-cursor-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glow-cursor-bg > div,
+.glow-cursor-bg canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 
 /* ——— Site nav (dark sticky blur) ——— */
 .site-nav {

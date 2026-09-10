@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import { SoftAuroraBackground } from "@/components/react-bits/SoftAuroraBackground";
+import { GlowCursorBackground } from "@/components/react-bits/GlowCursorBackground";
 import { SiteNav } from "@/components/ui/SiteNav";
 import { site } from "@/data/site";
 import "./globals.css";
@@ -35,6 +36,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <SoftAuroraBackground />
+        <GlowCursorBackground />
         <SiteNav />
         <div className="site-main">{children}</div>
       </body>
