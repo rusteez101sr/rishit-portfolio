@@ -1,6 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { NarrativeArc } from "@/components/sections/NarrativeArc";
+import { Origin } from "@/components/sections/Origin";
 import { FeaturedWork } from "@/components/sections/FeaturedWork";
 import { ProjectCollection } from "@/components/sections/ProjectCollection";
 import { Skills } from "@/components/sections/Skills";
@@ -16,7 +16,7 @@ export default function Home() {
     <main>
       <Hero />
       <About />
-      <NarrativeArc />
+      <Origin />
       <FeaturedWork projects={featured} />
       <ProjectCollection />
       <Skills />
