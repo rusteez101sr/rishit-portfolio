@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { About } from "@/components/sections/About";
+import { Systems } from "@/components/sections/Systems";
 import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
 import { Contact } from "@/components/sections/Contact";
@@ -14,6 +15,7 @@ export default function InfoPage() {
   return (
     <main className="info-page">
       <About />
+      <Systems />
       <Experience />
       <Skills />
       <Contact />

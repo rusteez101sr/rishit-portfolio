@@ -535,6 +535,216 @@ img {
   }
 }
 
+/* ——— Systems (CyBot loop) ——— */
+.systems .section-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(32px, 3.2vw, 40px);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.65rem;
+}
+
+.systems__lede {
+  margin: 0 0 2rem;
+  max-width: 40rem;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.systems-loop {
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.42fr);
+  gap: clamp(20px, 3vw, 36px);
+  align-items: stretch;
+  max-width: 1100px;
+}
+
+.systems-loop__diagram {
+  position: relative;
+  min-height: 360px;
+  width: 100%;
+  isolation: isolate;
+}
+
+.systems-loop__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 360px;
+}
+
+.systems-loop__nodes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.systems-loop__node-wrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.systems-loop__node {
+  --node-accent: var(--accent-cybot);
+  appearance: none;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 118px;
+  padding: 0.72rem 1rem 0.78rem;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 240, 234, 0.12);
+  background: #161617;
+  color: var(--text);
+  text-align: center;
+  box-shadow: 0 0 0 0 transparent;
+  transition:
+    background 180ms var(--ease),
+    border-color 180ms var(--ease),
+    box-shadow 180ms var(--ease),
+    transform 180ms var(--ease);
+}
+
+.systems-loop__node-label {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.systems-loop__node-sub {
+  font-size: 11.5px;
+  line-height: 1.25;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.systems-loop__node:hover,
+.systems-loop__node:focus-visible,
+.systems-loop__node.is-active {
+  background: #1C1C1E;
+  border-color: color-mix(in srgb, var(--node-accent) 55%, rgba(242, 240, 234, 0.12));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--node-accent) 28%, transparent),
+    0 0 24px color-mix(in srgb, var(--node-accent) 22%, transparent);
+}
+
+.systems-loop__node.is-active .systems-loop__node-label {
+  color: var(--text);
+}
+
+.systems-loop__node.is-active .systems-loop__node-sub {
+  color: color-mix(in srgb, var(--node-accent) 70%, var(--text-2));
+}
+
+.systems-loop__node.is-selected {
+  border-color: color-mix(in srgb, var(--node-accent) 70%, rgba(242, 240, 234, 0.12));
+}
+
+.systems-loop__node:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.systems-loop__caption {
+  background: #1C1C1E;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.45rem 1.5rem 1.55rem;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 160px;
+  align-self: center;
+}
+
+.systems-loop__caption-kicker {
+  margin: 0 0 0.55rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.systems-loop__caption-body {
+  margin: 0;
+  font-size: clamp(15px, 1.1vw, 16px);
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.systems-loop__caption-body--idle {
+  color: var(--text-2);
+}
+
+.systems-loop__chips {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.systems-loop__chip {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+}
+
+@media (max-width: 899px) {
+  .systems-loop {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .systems-loop__diagram {
+    min-height: 300px;
+  }
+
+  .systems-loop__svg {
+    min-height: 300px;
+  }
+
+  .systems-loop__caption {
+    align-self: stretch;
+    min-height: 0;
+  }
+
+  .systems-loop__node {
+    min-width: 104px;
+    padding: 0.62rem 0.85rem 0.68rem;
+  }
+
+  .systems-loop__node-label {
+    font-size: 14px;
+  }
+
+  .systems-loop__node-sub {
+    font-size: 10.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .systems-loop__node {
+    transition: none !important;
+  }
+}
+
 /* ——— Origin ——— */
 .origin__grid {
   display: grid;
