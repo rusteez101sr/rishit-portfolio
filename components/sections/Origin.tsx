@@ -103,7 +103,16 @@ export function Origin() {
               onMouseEnter={() => {
                 if (finePointer) handleActivate(panel.key);
               }}
-              onFocus={() => handleActivate(panel.key)}
+              onFocus={(event) => {
+                // Fine-pointer hover path + keyboard :focus-visible only —
+                // avoids sticky spotlight from touch-induced focus / first paint.
+                if (
+                  finePointer ||
+                  event.currentTarget.matches(":focus-visible")
+                ) {
+                  handleActivate(panel.key);
+                }
+              }}
               onKeyDown={(event) => handleKeyDown(event, panel.key)}
             >
               <h3 className="origin__panel-title">{panel.title}</h3>

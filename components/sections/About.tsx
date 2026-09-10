@@ -21,7 +21,7 @@ export function About() {
         </div>
 
         <aside className="about__path" aria-label="Education path">
-          <p className="about__path-label">Path</p>
+          <p className="about__path-label">PATH</p>
           <ol className="about__path-list">
             <li className="about__path-step">
               <span className="about__path-school">Nirma University</span>
