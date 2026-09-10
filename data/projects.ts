@@ -1,8 +1,8 @@
 import type { Project } from "@/lib/types";
 
 /**
- * Featured projects — content from Aura CONTENT HANDOFF 2026-09-10.
- * Media remain placeholders until art assets exist. CyBot is minimal interim.
+ * Featured projects — content from Aura CONTENT HANDOFF 2026-09-10 (+ CyBot update).
+ * Media remain placeholders until art assets exist.
  */
 export const projects: Project[] = [
   {
@@ -45,12 +45,22 @@ export const projects: Project[] = [
     title: "CyBot",
     shortTitle: "CyBot",
     summary:
-      "Iowa State CprE 288 embedded systems final project on the CyBot mobile platform — C on microcontroller hardware with sensors, communication, and navigation.",
-    description: null,
+      "Iowa State CprE 288 CyBot platform — embedded C on a TM4C123 + iRobot Create base, with IR/ping scanning, movement, cliff/boundary sensing, and a Python GUI for remote drive and live scan plots.",
+    description:
+      "Semester embedded-systems work culminating in a simple-mission stack: custom libraries (movement, UART, ping, IR, servo, buttons) plus a matplotlib TCP control client that scans the field, plots IR/ping in Cartesian space, and sends drive/goto commands to the bot.",
     year: null,
-    status: null,
+    status: "shipped",
     categories: ["Embedded", "Robotics", "Computer Engineering"],
-    technologies: ["C", "Embedded Systems"],
+    technologies: [
+      "C",
+      "TM4C123",
+      "UART",
+      "ADC",
+      "PWM",
+      "Python",
+      "matplotlib",
+      "TCP sockets",
+    ],
     featured: true,
     accent: "#D4892A",
     accentSoft: "rgba(212, 137, 42, 0.12)",
@@ -59,11 +69,15 @@ export const projects: Project[] = [
     hoverMedia: { type: "placeholder", motif: "gradient", alt: "CyBot secondary visual placeholder" },
     heroMedia: { type: "placeholder", motif: "gradient", alt: "CyBot hero placeholder" },
     links: [],
-    overview: null,
-    problem: null,
-    approach: null,
+    overview:
+      "CprE 288 CyBot work on a TM4C123 + iRobot Create: custom embedded drivers, IR/ping field scanning, cliff/boundary-aware movement, and a remote Python GUI for drive control and live Cartesian scan plots.",
+    problem:
+      "Course missions need the bot to sense a cluttered field, estimate object size, respect cliffs/boundaries, and be observed/driven remotely — on bare-metal MCU peripherals, not a full robot OS.",
+    approach:
+      "Build bumper-aware movement and sensor libraries (UART, ping input-capture, IR ADC, servo PWM, buttons), a simple_mission 180° scan/edge-detect/width pipeline, and a matplotlib TCP client for WASD drive, click-to-goto, and IR/ping plots.",
     role: null,
-    engineering: null,
+    engineering:
+      "TM4C123 + open_interface: UART link, ADC IR, PWM servo sweep, ping input-capture timing; object edges via scan discontinuities and law-of-cosines linear width; Python TCP sockets + matplotlib for live Cartesian plots and drive/goto commands.",
     challenge: null,
     outcome: null,
     gallery: null,

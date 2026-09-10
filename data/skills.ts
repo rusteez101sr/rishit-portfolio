@@ -66,6 +66,21 @@ export const skillGroups: SkillGroup[] = [
         name: "Embedded Systems",
         evidence: [{ projectSlug: "cybot" }],
       },
+      {
+        id: "uart",
+        name: "UART",
+        evidence: [{ projectSlug: "cybot" }],
+      },
+      {
+        id: "adc",
+        name: "ADC",
+        evidence: [{ projectSlug: "cybot" }],
+      },
+      {
+        id: "tcp-sockets",
+        name: "TCP sockets",
+        evidence: [{ projectSlug: "cybot" }],
+      },
     ],
   },
 ];
