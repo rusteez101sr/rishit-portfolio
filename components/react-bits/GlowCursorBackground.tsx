@@ -20,7 +20,7 @@ function useMediaQuery(query: string, serverFallback = false) {
 }
 
 /**
- * Real mouse-follow glow trail — fixed between SoftAurora and page content.
+ * Real mouse-follow glow trail — fixed between CE blur backdrop and page content.
  * Fine pointer + !prefers-reduced-motion only; never blocks clicks.
  */
 export function GlowCursorBackground() {
