@@ -82,3 +82,18 @@ export type SiteConfig = {
     href: string;
   }[];
 };
+
+export type BuildingStatus =
+  | "Researching"
+  | "Building"
+  | "Testing"
+  | "Learning"
+  | "In Progress";
+
+export type BuildingItem = {
+  id: string;
+  title: string;
+  status: BuildingStatus;
+  blurb: string;
+  href?: string | null;
+};
