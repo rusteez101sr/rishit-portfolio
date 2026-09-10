@@ -2,7 +2,7 @@ import { SectionShell } from "@/components/ui/SectionShell";
 
 export function About() {
   return (
-    <SectionShell id="about" index="02" title="About" className="about">
+    <SectionShell id="about" title="About" className="about">
       <div className="about__layout">
         <div className="about__prose">
           <p>

@@ -12,6 +12,8 @@ export const projects: Project[] = [
     shortTitle: "LabFlow",
     summary:
       "Android + Spring Boot platform that structures university lab workflows into checkpoints — progress tracking, deadlines, resources, and feedback-driven grading without spoon-feeding students.",
+    cardContext:
+      "COMS 3090, ’26 — Lab workflows with checkpoints, not spoon-feeding.",
     description:
       "COMS 3090 project (Iowa State, Spring 2026). Unified lab management for students, TAs, and instructors: hierarchical labs→parts→checkpoints, persistent progress, TA rubrics and comments, analytics, and equipment/resource management.",
     year: 2026,
@@ -22,9 +24,9 @@ export const projects: Project[] = [
     accent: "#1AA6B7",
     accentSoft: "rgba(26, 166, 183, 0.12)",
     accentDark: "#0E6F7A",
-    primaryMedia: { type: "placeholder", motif: "gradient", alt: "LabFlow visual placeholder" },
-    hoverMedia: { type: "placeholder", motif: "gradient", alt: "LabFlow secondary visual placeholder" },
-    heroMedia: { type: "placeholder", motif: "gradient", alt: "LabFlow hero placeholder" },
+    primaryMedia: { type: "placeholder", motif: "diagram", alt: "LabFlow visual placeholder" },
+    hoverMedia: { type: "placeholder", motif: "diagram", alt: "LabFlow secondary visual placeholder" },
+    heroMedia: { type: "placeholder", motif: "diagram", alt: "LabFlow hero placeholder" },
     links: [],
     overview:
       "LabFlow closes the gap between static lab manuals and modern coursework tools — structured checkpoints that keep academic rigor while giving TAs and instructors visibility at scale.",
@@ -46,6 +48,8 @@ export const projects: Project[] = [
     shortTitle: "CyBot",
     summary:
       "Iowa State CprE 288 CyBot platform — embedded C on a TM4C123 + iRobot Create base, with IR/ping scanning, movement, cliff/boundary sensing, and a Python GUI for remote drive and live scan plots.",
+    cardContext:
+      "CprE 288 — Sensing, control, and a live scan GUI on CyBot.",
     description:
       "Semester embedded-systems work culminating in a simple-mission stack: custom libraries (movement, UART, ping, IR, servo, buttons) plus a matplotlib TCP control client that scans the field, plots IR/ping in Cartesian space, and sends drive/goto commands to the bot.",
     year: null,
@@ -65,9 +69,9 @@ export const projects: Project[] = [
     accent: "#D4892A",
     accentSoft: "rgba(212, 137, 42, 0.12)",
     accentDark: "#8A5614",
-    primaryMedia: { type: "placeholder", motif: "gradient", alt: "CyBot visual placeholder" },
-    hoverMedia: { type: "placeholder", motif: "gradient", alt: "CyBot secondary visual placeholder" },
-    heroMedia: { type: "placeholder", motif: "gradient", alt: "CyBot hero placeholder" },
+    primaryMedia: { type: "placeholder", motif: "diagram", alt: "CyBot visual placeholder" },
+    hoverMedia: { type: "placeholder", motif: "diagram", alt: "CyBot secondary visual placeholder" },
+    heroMedia: { type: "placeholder", motif: "diagram", alt: "CyBot hero placeholder" },
     links: [],
     overview:
       "CprE 288 CyBot work on a TM4C123 + iRobot Create: custom embedded drivers, IR/ping field scanning, cliff/boundary-aware movement, and a remote Python GUI for drive control and live Cartesian scan plots.",
@@ -89,6 +93,8 @@ export const projects: Project[] = [
     shortTitle: "AI Doc",
     summary:
       "AI prototype for Pfizer clinical supply documents — OCR, field extraction, classification, and RAG search so messy PDFs stop living in Ctrl+F.",
+    cardContext:
+      "Pfizer × Extern, ’26 — OCR + RAG so clinical PDFs leave Ctrl+F behind.",
     description:
       "Built through the Pfizer Advanced AI-Powered Document Intelligence Externship (via Extern). Focus: non-GMP clinical supply documents; scanned + digital PDFs; fast experimentation toward a proof-of-concept Pfizer can evaluate for scale.",
     year: 2026,
@@ -112,17 +118,17 @@ export const projects: Project[] = [
     accentDark: "#433878",
     primaryMedia: {
       type: "placeholder",
-      motif: "gradient",
+      motif: "diagram",
       alt: "AI Document Intelligence visual placeholder",
     },
     hoverMedia: {
       type: "placeholder",
-      motif: "gradient",
+      motif: "diagram",
       alt: "AI Document Intelligence secondary visual placeholder",
     },
     heroMedia: {
       type: "placeholder",
-      motif: "gradient",
+      motif: "diagram",
       alt: "AI Document Intelligence hero placeholder",
     },
     links: [

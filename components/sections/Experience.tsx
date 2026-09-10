@@ -43,7 +43,6 @@ export function Experience() {
   return (
     <SectionShell
       id="experience"
-      index="07"
       title="Experience"
       className="experience"
     >

@@ -4,7 +4,7 @@ export type ProjectMedia = {
   type: "image" | "placeholder";
   src?: string | null;
   alt?: string | null;
-  motif?: "gradient" | null;
+  motif?: "gradient" | "diagram" | null;
 };
 
 export type ProjectLink = {
@@ -19,6 +19,8 @@ export type Project = {
   title: string;
   shortTitle?: string | null;
   summary?: string | null;
+  /** Outcome-oriented card context line for homepage stack */
+  cardContext?: string | null;
   description?: string | null;
   year?: number | null;
   status?: ProjectStatus | null;
@@ -77,6 +79,8 @@ export type SiteConfig = {
   title: string;
   description: string;
   email?: string | null;
+  /** Public resume URL; omit Resume nav link when null/undefined */
+  resume?: string | null;
   socials: {
     label: string;
     href: string;

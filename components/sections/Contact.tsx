@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { site } from "@/data/site";
 
@@ -9,7 +10,6 @@ export function Contact() {
   return (
     <SectionShell
       id="contact"
-      index="09"
       title="Let’s build something."
       className="contact"
     >
@@ -45,9 +45,9 @@ export function Contact() {
           <p className="contact__pending-note">
             Contact links will land here soon.
           </p>
-          <a href="#featured" className="contact__back">
+          <Link href="/#work" className="contact__back">
             Back to work ↑
-          </a>
+          </Link>
         </div>
       )}
     </SectionShell>

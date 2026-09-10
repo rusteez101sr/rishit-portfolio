@@ -100,7 +100,7 @@ export function Skills() {
   }, []);
 
   return (
-    <SectionShell id="skills" index="06" title="Toolbox" className="toolbox">
+    <SectionShell id="skills" title="Toolbox" className="toolbox">
       <p className="toolbox__dek">Connected to work — not percentage bars.</p>
 
       {skillGroups.length === 0 ? (

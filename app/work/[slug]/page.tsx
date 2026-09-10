@@ -74,7 +74,7 @@ export default async function WorkPage({ params }: PageProps) {
         <div className="section-inner" style={{ paddingBlock: "clamp(64px, 10vh, 112px)" }}>
           <p style={{ margin: "0 0 1.5rem" }}>
             <Link
-              href="/#featured-work"
+              href="/#work"
               style={{
                 color: "var(--text-2)",
                 fontSize: "0.9rem",
@@ -82,7 +82,7 @@ export default async function WorkPage({ params }: PageProps) {
                 textUnderlineOffset: "3px",
               }}
             >
-              ← Featured Work
+              ← Selected work
             </Link>
           </p>
 
