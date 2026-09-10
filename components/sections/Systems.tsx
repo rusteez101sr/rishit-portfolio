@@ -8,11 +8,12 @@ export function Systems() {
     <SectionShell
       id="systems"
       index="SYSTEMS"
-      title="How a CyBot thinks"
+      title="How LabFlow runs a lab"
       className="systems"
     >
       <p className="systems__lede">
-        Sense → decide → act → report — the CprE 288 loop, made visible.
+        Checkpoints → progress → backend → feedback — the platform loop behind
+        my strongest project.
       </p>
       <SystemsLoop />
     </SectionShell>

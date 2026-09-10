@@ -8,7 +8,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 
-export type SystemsNodeId = "sense" | "decide" | "act" | "report";
+export type SystemsNodeId = "structure" | "track" | "sync" | "feedback";
 
 export type SystemsNode = {
   id: SystemsNodeId;
@@ -23,40 +23,42 @@ export type SystemsNode = {
 /** Data-driven nodes — Rive Phase B can swap the visual layer while keeping this contract. */
 export const SYSTEMS_NODES: SystemsNode[] = [
   {
-    id: "sense",
+    id: "structure",
     index: 1,
-    label: "Sense",
-    sub: "IR · Ping · Cliff",
-    accent: "#E8A04A",
-    caption: "Scan the world — IR, ultrasonic, cliff sensors.",
-    chips: ["ADC", "IR", "GPIO"],
-  },
-  {
-    id: "decide",
-    index: 2,
-    label: "Decide",
-    sub: "TM4C123 · C",
-    accent: "#E8A04A",
-    caption: "TM4C123 runs the control loop in C.",
-    chips: ["TM4C123", "C"],
-  },
-  {
-    id: "act",
-    index: 3,
-    label: "Act",
-    sub: "PWM · Drive",
-    accent: "#E8A04A",
-    caption: "PWM drives the Create base.",
-    chips: ["PWM", "Drive"],
-  },
-  {
-    id: "report",
-    index: 4,
-    label: "Report",
-    sub: "UART → TCP → GUI",
+    label: "Structure",
+    sub: "Checkpoints · Android",
     accent: "#3EC6D8",
-    caption: "UART + TCP stream to a Python GUI with live plots.",
-    chips: ["UART", "TCP", "matplotlib"],
+    caption:
+      "Break a lab into clear checkpoints students can actually finish.",
+    chips: ["Java", "Android", "Material 3"],
+  },
+  {
+    id: "track",
+    index: 2,
+    label: "Track",
+    sub: "Progress · Deadlines",
+    accent: "#3EC6D8",
+    caption: "Live progress and deadlines without spoon-feeding the answer.",
+    chips: ["Checkpoints", "JWT"],
+  },
+  {
+    id: "sync",
+    index: 3,
+    label: "Sync",
+    sub: "Spring Boot · MySQL",
+    accent: "#3EC6D8",
+    caption: "Android client talks to a Spring Boot API backed by MySQL.",
+    chips: ["Spring Boot", "MySQL", "REST"],
+  },
+  {
+    id: "feedback",
+    index: 4,
+    label: "Feedback",
+    sub: "Grading · Mentors",
+    accent: "#3EC6D8",
+    caption:
+      "Feedback-driven grading closes the loop for instructors and students.",
+    chips: ["Feedback", "Grading"],
   },
 ];
 
@@ -64,11 +66,21 @@ const LOOP_PATH =
   "M 260 56 C 360 56, 424 120, 424 200 C 424 280, 360 344, 260 344 C 160 344, 96 280, 96 200 C 96 120, 160 56, 260 56";
 
 const NODE_POSITIONS: Record<SystemsNodeId, { x: number; y: number }> = {
-  sense: { x: 260, y: 56 },
-  decide: { x: 424, y: 200 },
-  act: { x: 260, y: 344 },
-  report: { x: 96, y: 200 },
+  structure: { x: 260, y: 56 },
+  track: { x: 424, y: 200 },
+  sync: { x: 260, y: 344 },
+  feedback: { x: 96, y: 200 },
 };
+
+const NODE_ORDER: SystemsNodeId[] = [
+  "structure",
+  "track",
+  "sync",
+  "feedback",
+];
+
+const DEFAULT_NODE: SystemsNodeId = "structure";
+const LABFLOW_TEAL = "#3EC6D8";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -100,10 +112,9 @@ function edgeLit(
   activeId: SystemsNodeId | null,
 ): boolean {
   if (!activeId) return false;
-  const order: SystemsNodeId[] = ["sense", "decide", "act", "report"];
-  const i = order.indexOf(activeId);
-  const prev = order[(i + 3) % 4];
-  const next = order[(i + 1) % 4];
+  const i = NODE_ORDER.indexOf(activeId);
+  const prev = NODE_ORDER[(i + 3) % 4];
+  const next = NODE_ORDER[(i + 1) % 4];
   return (
     (from === activeId && to === next) || (from === prev && to === activeId)
   );
@@ -114,12 +125,12 @@ export function SystemsLoop() {
   const finePointer = useFinePointer();
   const [hovered, setHovered] = useState<SystemsNodeId | null>(null);
   const [focused, setFocused] = useState<SystemsNodeId | null>(null);
-  const [selected, setSelected] = useState<SystemsNodeId | null>(null);
+  const [selected, setSelected] = useState<SystemsNodeId | null>(DEFAULT_NODE);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setSelected(finePointer ? null : "sense");
+        setSelected(finePointer ? null : DEFAULT_NODE);
         setHovered(null);
       }
     };
@@ -131,7 +142,7 @@ export function SystemsLoop() {
     if (selected) return selected;
     if (hovered) return hovered;
     if (focused) return focused;
-    if (!finePointer) return "sense";
+    if (!finePointer) return DEFAULT_NODE;
     return null;
   }, [selected, hovered, focused, finePointer]);
 
@@ -154,7 +165,7 @@ export function SystemsLoop() {
     (event: ReactKeyboardEvent<HTMLButtonElement>, id: SystemsNodeId) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        setSelected(finePointer ? null : "sense");
+        setSelected(finePointer ? null : DEFAULT_NODE);
         return;
       }
       if (event.key === "Enter" || event.key === " ") {
@@ -167,11 +178,21 @@ export function SystemsLoop() {
 
   const captionText =
     activeNode?.caption ??
-    "Hover or focus a node to see how CyBot closes the loop.";
+    "Hover or focus a node to see how LabFlow runs a lab.";
+
+  const edgePaths = [
+    ["structure", "track", "M 260 56 C 360 56, 424 120, 424 200"],
+    ["track", "sync", "M 424 200 C 424 280, 360 344, 260 344"],
+    ["sync", "feedback", "M 260 344 C 160 344, 96 280, 96 200"],
+    ["feedback", "structure", "M 96 200 C 96 120, 160 56, 260 56"],
+  ] as const;
 
   return (
     <div className="systems-loop">
-      <div className="systems-loop__diagram" aria-label="CyBot sense-decide-act-report loop">
+      <div
+        className="systems-loop__diagram"
+        aria-label="LabFlow structure-track-sync-feedback loop"
+      >
         <svg
           className="systems-loop__svg"
           viewBox="0 0 520 400"
@@ -199,23 +220,22 @@ export function SystemsLoop() {
 
           {/* Soft idle token crawl */}
           {!reducedMotion ? (
-            <circle r="3.5" fill="#E8A04A" opacity="0.55" filter="url(#systems-glow)">
+            <circle
+              r="3.5"
+              fill={LABFLOW_TEAL}
+              opacity="0.55"
+              filter="url(#systems-glow)"
+            >
               <animateMotion dur="10s" repeatCount="indefinite" path={LOOP_PATH} />
             </circle>
           ) : null}
 
           {/* Lit edges when a node is active */}
-          {(
-            [
-              ["sense", "decide", "M 260 56 C 360 56, 424 120, 424 200"],
-              ["decide", "act", "M 424 200 C 424 280, 360 344, 260 344"],
-              ["act", "report", "M 260 344 C 160 344, 96 280, 96 200"],
-              ["report", "sense", "M 96 200 C 96 120, 160 56, 260 56"],
-            ] as const
-          ).map(([from, to, d]) => {
+          {edgePaths.map(([from, to, d]) => {
             const lit = edgeLit(from, to, activeId);
             const accent =
-              SYSTEMS_NODES.find((n) => n.id === activeId)?.accent ?? "#E8A04A";
+              SYSTEMS_NODES.find((n) => n.id === activeId)?.accent ??
+              LABFLOW_TEAL;
             return (
               <path
                 key={`${from}-${to}`}
@@ -235,19 +255,12 @@ export function SystemsLoop() {
 
           {/* Soft pulse on active edge */}
           {!reducedMotion && activeId
-            ? (
-                [
-                  ["sense", "decide", "M 260 56 C 360 56, 424 120, 424 200"],
-                  ["decide", "act", "M 424 200 C 424 280, 360 344, 260 344"],
-                  ["act", "report", "M 260 344 C 160 344, 96 280, 96 200"],
-                  ["report", "sense", "M 96 200 C 96 120, 160 56, 260 56"],
-                ] as const
-              )
+            ? edgePaths
                 .filter(([from, to]) => edgeLit(from, to, activeId))
                 .map(([from, to, d]) => {
                   const accent =
                     SYSTEMS_NODES.find((n) => n.id === activeId)?.accent ??
-                    "#E8A04A";
+                    LABFLOW_TEAL;
                   return (
                     <circle
                       key={`pulse-${from}-${to}`}
@@ -318,7 +331,10 @@ export function SystemsLoop() {
       >
         {activeNode ? (
           <>
-            <p className="systems-loop__caption-kicker" style={{ color: activeNode.accent }}>
+            <p
+              className="systems-loop__caption-kicker"
+              style={{ color: activeNode.accent }}
+            >
               {activeNode.label}
             </p>
             <p className="systems-loop__caption-body">{captionText}</p>
