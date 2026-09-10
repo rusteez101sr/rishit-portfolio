@@ -8,5 +8,7 @@ export const site: SiteConfig = {
   description:
     "Personal engineering portfolio spanning software, hardware, and intelligent systems.",
   email: null,
-  socials: [],
+  socials: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rishitdwivedi0605" },
+  ],
 };

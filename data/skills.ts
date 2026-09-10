@@ -19,6 +19,16 @@ export const skillGroups: SkillGroup[] = [
         name: "Android",
         evidence: [{ projectSlug: "labflow" }],
       },
+      {
+        id: "spring-boot",
+        name: "Spring Boot",
+        evidence: [{ projectSlug: "labflow" }],
+      },
+      {
+        id: "mysql",
+        name: "MySQL",
+        evidence: [{ projectSlug: "labflow" }],
+      },
     ],
   },
   {
@@ -28,6 +38,16 @@ export const skillGroups: SkillGroup[] = [
       {
         id: "python",
         name: "Python",
+        evidence: [{ projectSlug: "document-intelligence" }],
+      },
+      {
+        id: "ocr",
+        name: "OCR",
+        evidence: [{ projectSlug: "document-intelligence" }],
+      },
+      {
+        id: "rag",
+        name: "RAG",
         evidence: [{ projectSlug: "document-intelligence" }],
       },
     ],
