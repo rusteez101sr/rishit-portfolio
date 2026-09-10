@@ -119,7 +119,7 @@ export function FeaturedWork({ projects }: FeaturedWorkProps) {
 
   return (
     <section
-      id="featured-work"
+      id="featured"
       className="featured-work"
       aria-labelledby="featured-work-title"
       onMouseLeave={clearSpotlight}
