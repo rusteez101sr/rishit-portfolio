@@ -1,5 +1,9 @@
+"use client";
+
+import { useRef } from "react";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { experience } from "@/data/experience";
+import { useInViewOnce, useIsClient } from "@/lib/motion";
 import type { ExperienceItem } from "@/lib/types";
 
 function formatTenure(item: ExperienceItem) {
@@ -13,12 +17,21 @@ function formatTenure(item: ExperienceItem) {
   return parts.join(" · ");
 }
 
-function ExperienceEntry({ item }: { item: ExperienceItem }) {
+function ExperienceEntry({
+  item,
+  index,
+}: {
+  item: ExperienceItem;
+  index: number;
+}) {
   const tenure = formatTenure(item);
   const highlights = (item.highlights ?? []).slice(0, 3);
 
   return (
-    <li className="experience__item">
+    <li
+      className="experience__item stagger-row"
+      style={{ ["--stagger-i" as string]: index }}
+    >
       <span className="experience__dot" aria-hidden="true" />
       <div className="experience__body">
         <h3 className="experience__role">{item.role}</h3>
@@ -40,9 +53,14 @@ function ExperienceEntry({ item }: { item: ExperienceItem }) {
 }
 
 export function Experience() {
+  const listRef = useRef<HTMLOListElement>(null);
+  const inView = useInViewOnce(listRef);
+  const armed = useIsClient();
+
   return (
     <SectionShell
       id="experience"
+      index="EXPERIENCE"
       title="Experience"
       className="experience"
     >
@@ -60,9 +78,19 @@ export function Experience() {
           </a>
         </div>
       ) : (
-        <ol className="experience__timeline">
-          {experience.map((item) => (
-            <ExperienceEntry key={item.id} item={item} />
+        <ol
+          ref={listRef}
+          className={[
+            "experience__timeline",
+            "stagger-parent",
+            armed && !inView ? "is-pending" : "",
+            inView ? "is-inview" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {experience.map((item, i) => (
+            <ExperienceEntry key={item.id} item={item} index={i} />
           ))}
         </ol>
       )}

@@ -10,6 +10,7 @@ export function Contact() {
   return (
     <SectionShell
       id="contact"
+      index="CONTACT"
       title="Let’s build something."
       className="contact"
     >

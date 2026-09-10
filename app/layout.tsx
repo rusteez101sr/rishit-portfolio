@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { CeBlurBackground } from "@/components/react-bits/CeBlurBackground";
 import { GlowCursorBackground } from "@/components/react-bits/GlowCursorBackground";
 import { SiteNav } from "@/components/ui/SiteNav";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${newsreader.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <CeBlurBackground />

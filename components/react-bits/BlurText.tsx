@@ -60,7 +60,7 @@ export default function BlurText({
   rootMargin = "0px",
   animationFrom,
   animationTo,
-  easing = (t: number) => t,
+  easing = ((t: number) => 1 - Math.pow(1 - t, 3)) as Easing,
   onAnimationComplete,
   stepDuration = 0.35,
 }: BlurTextProps) {
@@ -88,17 +88,17 @@ export default function BlurText({
   const defaultFrom = useMemo(
     () =>
       direction === "top"
-        ? { filter: "blur(10px)", opacity: 0, y: -50 }
-        : { filter: "blur(10px)", opacity: 0, y: 50 },
+        ? { filter: "blur(6px)", opacity: 0, y: -12 }
+        : { filter: "blur(6px)", opacity: 0, y: 12 },
     [direction],
   );
 
   const defaultTo = useMemo(
     () => [
       {
-        filter: "blur(5px)",
-        opacity: 0.5,
-        y: direction === "top" ? 5 : -5,
+        filter: "blur(3px)",
+        opacity: 0.55,
+        y: direction === "top" ? 4 : -4,
       },
       { filter: "blur(0px)", opacity: 1, y: 0 },
     ],

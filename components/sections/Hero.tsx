@@ -11,12 +11,15 @@ export function Hero() {
             text="I build across software, hardware"
             animateBy="words"
             direction="top"
-            delay={80}
-            stepDuration={0.32}
+            delay={70}
+            stepDuration={0.28}
             className="hero__headline-line hero__blur-line"
           />
-          <span className="hero__headline-line hero__enter" style={{ ["--enter-i" as string]: 1 }}>
-            <em className="hero__italic">&amp; intelligence.</em>
+          <span
+            className="hero__headline-line hero__enter"
+            style={{ ["--enter-i" as string]: 1 }}
+          >
+            <span className="hero__amp">&amp; intelligence.</span>
           </span>
         </h1>
 

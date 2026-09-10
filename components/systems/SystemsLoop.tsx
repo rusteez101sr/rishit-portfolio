@@ -247,7 +247,7 @@ export function SystemsLoop() {
                 style={{
                   transition: reducedMotion
                     ? "none"
-                    : "stroke-opacity 180ms ease, stroke-width 180ms ease",
+                    : "stroke-opacity 180ms cubic-bezier(0.22, 1, 0.36, 1), stroke-width 180ms cubic-bezier(0.22, 1, 0.36, 1)",
                 }}
               />
             );

@@ -53,7 +53,7 @@ export function SiteNav() {
           {linkedIn ? (
             <a
               href={linkedIn.href}
-              className="site-nav__ext"
+              className="site-nav__ext site-nav__underline"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -63,7 +63,7 @@ export function SiteNav() {
           {resume ? (
             <a
               href={resume}
-              className="site-nav__ext"
+              className="site-nav__ext site-nav__underline"
               rel="noopener noreferrer"
               target="_blank"
             >
