@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { AtmosphereProvider } from "@/components/ui/Atmosphere";
 import { SiteNav } from "@/components/ui/SiteNav";
 import { site } from "@/data/site";
 import "./globals.css";
@@ -33,8 +34,10 @@ export default function RootLayout({
       className={`${inter.variable} ${newsreader.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <SiteNav />
-        <div className="site-main">{children}</div>
+        <AtmosphereProvider>
+          <SiteNav />
+          <div className="site-main">{children}</div>
+        </AtmosphereProvider>
       </body>
     </html>
   );

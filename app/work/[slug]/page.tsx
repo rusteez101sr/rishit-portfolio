@@ -94,7 +94,7 @@ export default async function WorkPage({ params }: PageProps) {
               borderRadius: "var(--radius-media)",
               marginBottom: "2rem",
               overflow: "hidden",
-              background: `linear-gradient(155deg, color-mix(in srgb, ${project.accent} 28%, #f7f4ee), #efece5 75%)`,
+              background: `linear-gradient(155deg, color-mix(in srgb, ${project.accent} 28%, #161617), #1C1C1E 75%)`,
               border: "1px solid var(--border)",
             }}
             role="img"

@@ -3,6 +3,7 @@
 import { useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { ProjectEvidenceDiagram } from "@/components/evidence/ProjectDiagrams";
+import { useAtmosphere } from "@/components/ui/Atmosphere";
 import type { Project } from "@/lib/types";
 
 type SelectedWorkProps = {
@@ -11,10 +12,16 @@ type SelectedWorkProps = {
 
 function WorkCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false);
+  const { setAccentTint } = useAtmosphere();
   const primaryAlt =
     project.primaryMedia?.alt ?? `${project.title} evidence diagram`;
   const hoverAlt =
     project.hoverMedia?.alt ?? `${project.title} secondary evidence`;
+
+  const setHover = (next: boolean) => {
+    setHovered(next);
+    setAccentTint(next ? project.accent : null);
+  };
 
   return (
     <Link
@@ -28,10 +35,10 @@ function WorkCard({ project }: { project: Project }) {
           ["--card-accent-soft" as string]: project.accentSoft,
         } as CSSProperties
       }
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={() => setHovered(true)}
-      onBlur={() => setHovered(false)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
       aria-label={`${project.title} — view project`}
     >
       <div className="work-card__top">

@@ -31,12 +31,6 @@ export function Hero() {
           See selected work ↓
         </a>
       </div>
-
-      <a href="#work" className="hero__scroll" aria-label="Scroll to selected work">
-        <span className="hero__scroll-chevron" aria-hidden="true">
-          ↓
-        </span>
-      </a>
     </section>
   );
 }
