@@ -67,8 +67,8 @@ img {
 
 
 
-/* ——— Pointer-follow atmosphere (behind content) ——— */
-.atmosphere {
+/* ——— SoftAurora atmosphere (React Bits; primary, behind content) ——— */
+.soft-aurora-bg {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -76,58 +76,11 @@ img {
   overflow: hidden;
 }
 
-.atmosphere__glow {
-  position: absolute;
-  inset: -25%;
-  background:
-    radial-gradient(
-      circle 52vmax at var(--ax, 50%) var(--ay, 42%),
-      rgba(242, 240, 234, 0.07),
-      transparent 58%
-    ),
-    radial-gradient(
-      circle 40vmax at calc(var(--ax, 50%) + 12%) calc(var(--ay, 42%) + 10%),
-      rgba(155, 140, 255, 0.045),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle 36vmax at calc(var(--ax, 50%) - 14%) calc(var(--ay, 42%) - 8%),
-      rgba(62, 198, 216, 0.035),
-      transparent 52%
-    );
-  will-change: background;
-}
-
-.atmosphere__accent {
-  position: absolute;
-  inset: -25%;
-  background: radial-gradient(
-    circle 46vmax at var(--ax, 50%) var(--ay, 42%),
-    color-mix(in srgb, var(--atm-accent, transparent) 16%, transparent),
-    transparent 58%
-  );
-  opacity: 0;
-  transition: opacity 300ms var(--ease);
-  will-change: opacity;
-}
-
-.atmosphere__accent.is-on {
-  opacity: 1;
-}
-
-.atmosphere__grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .atmosphere__accent {
-    transition: none !important;
-  }
+.soft-aurora-bg > div,
+.soft-aurora-bg canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 
@@ -367,6 +320,17 @@ img {
 /* Controlled 2-line break: keep "hardware" with line 1 on desktop/tablet */
 @media (min-width: 640px) {
   .hero__headline-line {
+    white-space: nowrap;
+  }
+}
+
+
+.hero__blur-line {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .hero__blur-line {
     white-space: nowrap;
   }
 }
@@ -716,6 +680,19 @@ img {
   gap: 48px;
 }
 
+.work-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 18px;
+  outline: none;
+}
+
+.work-card-link:focus-visible .work-card {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 3px;
+}
+
 .work-card {
   --card-accent: var(--text);
   --card-accent-soft: transparent;
@@ -757,7 +734,14 @@ img {
   transition: opacity 400ms var(--ease);
 }
 
-.work-card > * {
+.work-card > *:not([aria-hidden="true"]:first-child) {
+  position: relative;
+  z-index: 1;
+}
+
+.work-card > .work-card__top,
+.work-card > .work-card__context,
+.work-card > .work-card__frame {
   position: relative;
   z-index: 1;
 }
