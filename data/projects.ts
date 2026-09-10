@@ -75,7 +75,7 @@ export const projects: Project[] = [
       "Course missions need the bot to sense a cluttered field, estimate object size, respect cliffs/boundaries, and be observed/driven remotely — on bare-metal MCU peripherals, not a full robot OS.",
     approach:
       "Build bumper-aware movement and sensor libraries (UART, ping input-capture, IR ADC, servo PWM, buttons), a simple_mission 180° scan/edge-detect/width pipeline, and a matplotlib TCP client for WASD drive, click-to-goto, and IR/ping plots.",
-    role: null,
+    role: "Team of two — work divided equally",
     engineering:
       "TM4C123 + open_interface: UART link, ADC IR, PWM servo sweep, ping input-capture timing; object edges via scan discontinuities and law-of-cosines linear width; Python TCP sockets + matplotlib for live Cartesian plots and drive/goto commands.",
     challenge: null,
