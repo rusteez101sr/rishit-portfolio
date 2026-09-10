@@ -1248,8 +1248,9 @@ img {
   outline-offset: 2px;
 }
 
-/* Fine pointer: evidence revealed on hover / focus / open accordion */
-@media (hover: hover) and (pointer: fine) {
+/* Desktop fine pointer only (≥901px): hover / focus / accordion reveal.
+   ≤900px and coarse/touch keep evidence ALWAYS visible (no accordion hide). */
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
   .toolbox__skill-body {
     display: grid;
     grid-template-rows: 0fr;
@@ -1292,7 +1293,7 @@ img {
   }
 }
 
-/* Coarse / touch: evidence always visible */
+/* Coarse / touch: evidence always visible (regardless of open state) */
 @media (hover: none), (pointer: coarse) {
   .toolbox__skill-body {
     display: block;
@@ -1300,13 +1301,28 @@ img {
     padding: 0 0.7rem 0.7rem;
   }
 
+  .toolbox__skill-body > * {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .toolbox__chip {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .toolbox__skill {
     border-color: var(--border);
     background: color-mix(in srgb, var(--surface-2) 40%, transparent);
   }
+
+  /* Accordion chrome unused when evidence is always shown */
+  .toolbox__skill-toggle {
+    cursor: default;
+  }
 }
 
-/* Mobile / tablet: stack group cards */
+/* Mobile / tablet ≤900: stack groups; evidence always visible */
 @media (max-width: 900px) {
   .toolbox__grid {
     grid-template-columns: 1fr;
@@ -1318,9 +1334,23 @@ img {
     padding: 0 0.7rem 0.7rem;
   }
 
+  .toolbox__skill-body > * {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .toolbox__chip {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .toolbox__skill {
     border-color: var(--border);
     background: color-mix(in srgb, var(--surface-2) 40%, transparent);
+  }
+
+  .toolbox__skill-toggle {
+    cursor: default;
   }
 }
 

@@ -2,6 +2,7 @@
 
 import {
   useCallback,
+  useEffect,
   useState,
   type CSSProperties,
 } from "react";
@@ -9,6 +10,10 @@ import { SectionShell } from "@/components/ui/SectionShell";
 import { getProjectBySlug } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
 import type { SkillItem } from "@/lib/types";
+
+/** ≤900px viewport OR coarse/no-hover: evidence must stay visible (no accordion hide). */
+const ALWAYS_EXPANDED_MQ =
+  "(max-width: 900px), (hover: none), (pointer: coarse)";
 
 function EvidenceChips({ skill }: { skill: SkillItem }) {
   return (
@@ -44,23 +49,29 @@ function SkillRow({
   skill,
   isOpen,
   onToggle,
+  alwaysExpanded,
 }: {
   skill: SkillItem;
   isOpen: boolean;
   onToggle: (id: string) => void;
+  alwaysExpanded: boolean;
 }) {
+  const expanded = alwaysExpanded || isOpen;
+
   return (
     <div
-      className={["toolbox__skill", isOpen ? "is-open" : ""]
+      className={["toolbox__skill", expanded ? "is-open" : ""]
         .filter(Boolean)
         .join(" ")}
     >
       <button
         type="button"
         className="toolbox__skill-toggle"
-        aria-expanded={isOpen}
+        aria-expanded={expanded}
         aria-controls={`toolbox-evidence-${skill.id}`}
-        onClick={() => onToggle(skill.id)}
+        onClick={() => {
+          if (!alwaysExpanded) onToggle(skill.id);
+        }}
       >
         <span className="toolbox__skill-name">{skill.name}</span>
       </button>
@@ -73,6 +84,15 @@ function SkillRow({
 
 export function Skills() {
   const [openSkillId, setOpenSkillId] = useState<string | null>(null);
+  const [alwaysExpanded, setAlwaysExpanded] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(ALWAYS_EXPANDED_MQ);
+    const sync = () => setAlwaysExpanded(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const handleToggle = useCallback((id: string) => {
     setOpenSkillId((current) => (current === id ? null : id));
@@ -96,6 +116,7 @@ export function Skills() {
                     skill={skill}
                     isOpen={openSkillId === skill.id}
                     onToggle={handleToggle}
+                    alwaysExpanded={alwaysExpanded}
                   />
                 ))}
               </div>
