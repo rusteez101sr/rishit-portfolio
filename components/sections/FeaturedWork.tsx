@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState, type CSSProperties } from "react";
+import Link from "next/link";
 import type { Project } from "@/lib/types";
 
 type FeaturedWorkProps = {
@@ -48,7 +49,7 @@ function FeaturedCard({
     project.hoverMedia?.alt ?? `${project.title} secondary visual`;
 
   return (
-    <a
+    <Link
       href={`/work/${project.slug}`}
       className={["featured-card", isActive ? "is-active" : ""]
         .filter(Boolean)
@@ -102,7 +103,7 @@ function FeaturedCard({
         ) : null}
         <span className="featured-card__cta">View project →</span>
       </div>
-    </a>
+    </Link>
   );
 }
 

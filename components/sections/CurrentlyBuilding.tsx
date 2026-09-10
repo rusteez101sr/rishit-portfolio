@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { building } from "@/data/building";
 import type { BuildingStatus } from "@/lib/types";
@@ -41,13 +42,13 @@ export function CurrentlyBuilding() {
           return (
             <li key={item.id} className="building__card-wrap">
               {hasHref && item.href ? (
-                <a
+                <Link
                   href={item.href}
                   className="building__card building__card--link"
                   aria-label={`${item.title} — ${item.status}`}
                 >
                   {inner}
-                </a>
+                </Link>
               ) : (
                 <div
                   className="building__card building__card--static"

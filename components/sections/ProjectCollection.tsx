@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { getFeaturedProjects } from "@/data/projects";
 
@@ -22,7 +23,7 @@ export function ProjectCollection() {
           const techs = project.technologies.slice(0, 3);
 
           return (
-            <a
+            <Link
               key={project.id}
               href={`/work/${project.slug}`}
               className="project-cell"
@@ -49,7 +50,7 @@ export function ProjectCollection() {
                   ))}
                 </ul>
               ) : null}
-            </a>
+            </Link>
           );
         })}
       </div>

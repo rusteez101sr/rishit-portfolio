@@ -6,6 +6,7 @@ import {
   useState,
   type CSSProperties,
 } from "react";
+import Link from "next/link";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { getProjectBySlug } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
@@ -26,7 +27,7 @@ function EvidenceChips({ skill }: { skill: SkillItem }) {
 
         return (
           <li key={`${skill.id}-${item.projectSlug}`}>
-            <a
+            <Link
               href={`/work/${project.slug}`}
               className="toolbox__chip"
               style={
@@ -37,7 +38,7 @@ function EvidenceChips({ skill }: { skill: SkillItem }) {
               }
             >
               {label}
-            </a>
+            </Link>
           </li>
         );
       })}
