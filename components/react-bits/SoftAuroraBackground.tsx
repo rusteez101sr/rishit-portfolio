@@ -34,9 +34,9 @@ export function SoftAuroraBackground() {
         color1="#3EC6D8"
         color2="#9B8CFF"
         lightMode={false}
-        brightness={0.65}
+        brightness={0.85}
         speed={reduceMotion ? 0.12 : 0.5}
-        mouseInfluence={0.25}
+        mouseInfluence={0.3}
         enableMouseInteraction={enableMouse}
         scale={1.45}
         bandHeight={0.48}
