@@ -42,10 +42,21 @@ export type Project = {
   gallery?: ProjectMedia[] | null;
 };
 
+export type SkillEvidence = {
+  projectSlug: string;
+  label?: string;
+};
+
+export type SkillItem = {
+  id: string;
+  name: string;
+  evidence: SkillEvidence[];
+};
+
 export type SkillGroup = {
   id: string;
-  label: string;
-  items: string[];
+  title: string;
+  skills: SkillItem[];
 };
 
 export type ExperienceItem = {
